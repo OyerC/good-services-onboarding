@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import type { CSSProperties } from "react";
+
+type StaggerStyle = CSSProperties & { ["--stagger-index"]?: number };
+const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index });
 
 type Challenge = {
   letter: string;
@@ -84,16 +88,19 @@ export default function ChallengesScreen() {
   const [openLetter, setOpenLetter] = useState<string | null>("A.");
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <main className="mx-auto flex w-full max-w-3xl flex-col px-6 py-16">
-        <header className="text-center">
+    <div className="min-h-screen screen-gradient-challenges text-foreground">
+      <main className="stagger mx-auto flex w-full max-w-3xl flex-col px-6 py-16">
+        <header className="stagger-item text-center" style={stagger(0)}>
           <h1 className="text-4xl font-semibold tracking-tight">The Challenge</h1>
           <p className="mt-6 text-base leading-7 text-foreground/80">
             You will work in groups. Each group will choose one challenge.
           </p>
         </header>
 
-        <section className="mt-8 rounded-2xl bg-foreground/[0.04] px-6 py-6">
+        <section
+          className="stagger-item mt-8 rounded-2xl bg-tint px-6 py-6"
+          style={stagger(1)}
+        >
           <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground/70">
             Rules
           </h2>
@@ -107,7 +114,10 @@ export default function ChallengesScreen() {
           </ul>
         </section>
 
-        <section className="mt-6 text-center">
+        <section
+          className="stagger-item mt-6 text-center"
+          style={stagger(2)}
+        >
           <p className="text-base leading-7 text-foreground/80">
             The logic behind many of these challenges relates to the circular economy and
             servitization services. These concepts might not sound familiar to you yet, but
@@ -120,7 +130,10 @@ export default function ChallengesScreen() {
           </p>
         </section>
 
-        <section className="mt-10">
+        <section
+          className="stagger-item mt-10"
+          style={stagger(3)}
+        >
           <div className="flex flex-col gap-3">
             {challenges.map((c) => {
               const isOpen = openLetter === c.letter;
@@ -154,10 +167,13 @@ export default function ChallengesScreen() {
           </div>
         </section>
 
-        <div className="mt-12 flex justify-center">
+        <div
+          className="stagger-item mt-12 flex justify-center"
+          style={stagger(4)}
+        >
           <Link
             href="/onboarding/magic-wand"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-foreground px-8 text-background font-semibold transition-colors hover:bg-foreground/90 focus:outline-none focus:ring-2 focus:ring-foreground/30"
+            className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-primary-foreground font-semibold shadow-sm transition duration-200 ease-out hover:scale-[1.03] hover:bg-primary/90 hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30"
           >
             Next
           </Link>

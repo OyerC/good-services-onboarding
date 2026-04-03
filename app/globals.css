@@ -3,11 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #003a8f;
+  --tint: #f5f8ff;
+  --primary-foreground: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-tint: var(--tint);
+  --color-primary-foreground: var(--primary-foreground);
   --font-sans: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,6 +22,8 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --tint: #0f1a33;
+    --primary-foreground: #ffffff;
   }
 }
 
@@ -23,4 +31,112 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-weight: 500;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+@keyframes onboarding-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.onboarding-enter {
+  animation: onboarding-enter 300ms ease-out both;
+}
+
+@keyframes onboarding-stagger {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger .stagger-item {
+  opacity: 0;
+  animation: onboarding-stagger 360ms ease-out both;
+  animation-delay: calc(var(--stagger-index, 0) * 60ms + 40ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stagger .stagger-item {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+.screen-gradient-welcome {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(0, 58, 143, 0.08) 100%
+  );
+}
+
+.screen-gradient-client {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(0, 58, 143, 0.1) 100%
+  );
+}
+
+.screen-gradient-challenges {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(0, 58, 143, 0.12) 100%
+  );
+}
+
+.screen-gradient-magic-wand {
+  background:
+    radial-gradient(
+      1200px 700px at 50% 20%,
+      rgba(0, 58, 143, 0.08) 0%,
+      rgba(0, 58, 143, 0) 60%
+    ),
+    linear-gradient(to bottom, #ffffff 0%, rgba(0, 58, 143, 0.065) 100%);
+}
+
+.screen-gradient-final {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(0, 58, 143, 0.08) 100%
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  .screen-gradient-welcome,
+  .screen-gradient-client,
+  .screen-gradient-challenges,
+  .screen-gradient-magic-wand,
+  .screen-gradient-final {
+    background: var(--background);
+  }
 }
