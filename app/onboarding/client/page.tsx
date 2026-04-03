@@ -6,7 +6,7 @@ const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index }
 
 export default function ClientScreen() {
   return (
-    <div className="min-h-screen screen-gradient-client text-foreground">
+    <div className="min-h-screen screen-breathe screen-breathe-client text-foreground">
       <main className="stagger mx-auto flex w-full max-w-2xl flex-col items-center px-6 py-16 text-center">
         <h1
           className="stagger-item text-4xl font-semibold tracking-tight"

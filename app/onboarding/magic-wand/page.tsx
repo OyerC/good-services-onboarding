@@ -6,7 +6,7 @@ const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index }
 
 export default function MagicWandScreen() {
   return (
-    <div className="min-h-screen screen-gradient-magic-wand text-foreground">
+    <div className="min-h-screen screen-breathe screen-breathe-magic-wand text-foreground">
       <main className="stagger mx-auto flex w-full max-w-2xl flex-col px-6 py-20 text-center">
         <h1
           className="stagger-item text-4xl font-semibold tracking-tight"

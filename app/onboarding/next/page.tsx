@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function OnboardingNextScreen() {
   return (
-    <div className="min-h-screen screen-gradient-final text-foreground">
+    <div className="min-h-screen screen-breathe screen-breathe-final text-foreground">
       <main className="mx-auto flex w-full max-w-xl flex-col items-center px-6 py-16 text-center">
         <h1 className="text-4xl font-semibold tracking-tight">
           Ready to start

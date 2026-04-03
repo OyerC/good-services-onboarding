@@ -89,158 +89,57 @@ h1 {
   }
 }
 
-.screen-gradient-welcome {
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(0, 58, 143, 0.095) 55%,
-    rgba(0, 58, 143, 0.17) 100%
-  );
-}
-
-.screen-gradient-client {
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(0, 58, 143, 0.115) 50%,
-    rgba(0, 58, 143, 0.2) 100%
-  );
-}
-
-.screen-gradient-challenges {
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(0, 58, 143, 0.135) 50%,
-    rgba(0, 58, 143, 0.235) 100%
-  );
-}
-
-.screen-gradient-magic-wand {
-  position: relative;
-  isolation: isolate;
-  background:
-    radial-gradient(
-      1200px 700px at 50% 20%,
-      rgba(0, 58, 143, 0.14) 0%,
-      rgba(0, 58, 143, 0) 60%
-    ),
-    linear-gradient(to bottom, #ffffff 0%, rgba(0, 58, 143, 0.13) 100%);
-}
-
-.screen-gradient-final {
-  position: relative;
-  isolation: isolate;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 58, 143, 0.17) 0%,
-    rgba(0, 58, 143, 0.1) 45%,
-    #ffffff 100%
-  );
-}
-
-@keyframes bg-breathe {
+@keyframes screen-breathe {
   0% {
-    opacity: 0.35;
+    background-color: var(--breathe-from, #ffffff);
   }
   50% {
-    opacity: 0.9;
+    background-color: var(--breathe-to, #f5f8ff);
   }
   100% {
-    opacity: 0.35;
+    background-color: var(--breathe-from, #ffffff);
   }
 }
 
-.screen-gradient-welcome::before,
-.screen-gradient-client::before,
-.screen-gradient-challenges::before,
-.screen-gradient-magic-wand::before,
-.screen-gradient-final::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  animation: bg-breathe 15s ease-in-out infinite;
+.screen-breathe {
+  background-color: var(--breathe-from, #ffffff);
+  animation: screen-breathe 15s ease-in-out infinite;
 }
 
-.screen-gradient-welcome::before {
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(0, 58, 143, 0.12) 55%,
-    rgba(0, 58, 143, 0.21) 100%
-  );
+.screen-breathe-welcome {
+  --breathe-from: #ffffff;
+  --breathe-to: #e1ecff;
 }
 
-.screen-gradient-client::before {
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(0, 58, 143, 0.14) 50%,
-    rgba(0, 58, 143, 0.24) 100%
-  );
+.screen-breathe-client {
+  --breathe-from: #ffffff;
+  --breathe-to: #d6e6ff;
 }
 
-.screen-gradient-challenges::before {
-  background: linear-gradient(
-    to bottom,
-    #ffffff 0%,
-    rgba(0, 58, 143, 0.17) 50%,
-    rgba(0, 58, 143, 0.275) 100%
-  );
+.screen-breathe-challenges {
+  --breathe-from: #ffffff;
+  --breathe-to: #cfe2ff;
 }
 
-.screen-gradient-magic-wand::before {
-  background:
-    radial-gradient(
-      1200px 700px at 50% 20%,
-      rgba(0, 58, 143, 0.16) 0%,
-      rgba(0, 58, 143, 0) 62%
-    ),
-    linear-gradient(to bottom, #ffffff 0%, rgba(0, 58, 143, 0.155) 100%);
+.screen-breathe-magic-wand {
+  --breathe-from: #ffffff;
+  --breathe-to: #eaf2ff;
 }
 
-.screen-gradient-final::before {
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 58, 143, 0.2) 0%,
-    rgba(0, 58, 143, 0.115) 45%,
-    #ffffff 100%
-  );
+.screen-breathe-final {
+  --breathe-from: #ffffff;
+  --breathe-to: #e1ecff;
 }
 
 @media (prefers-color-scheme: dark) {
-  .screen-gradient-welcome,
-  .screen-gradient-client,
-  .screen-gradient-challenges,
-  .screen-gradient-magic-wand,
-  .screen-gradient-final {
-    background: var(--background);
-  }
-
-  .screen-gradient-welcome::before,
-  .screen-gradient-client::before,
-  .screen-gradient-challenges::before,
-  .screen-gradient-magic-wand::before,
-  .screen-gradient-final::before {
-    display: none;
+  .screen-breathe {
+    background-color: var(--background);
+    animation: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .screen-gradient-welcome::before,
-  .screen-gradient-client::before,
-  .screen-gradient-challenges::before,
-  .screen-gradient-magic-wand::before,
-  .screen-gradient-final::before {
+  .screen-breathe {
     animation: none;
-    opacity: 0;
   }
 }

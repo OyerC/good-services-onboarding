@@ -88,7 +88,7 @@ export default function ChallengesScreen() {
   const [openLetter, setOpenLetter] = useState<string | null>("A.");
 
   return (
-    <div className="min-h-screen screen-gradient-challenges text-foreground">
+    <div className="min-h-screen screen-breathe screen-breathe-challenges text-foreground">
       <main className="stagger mx-auto flex w-full max-w-3xl flex-col px-6 py-16">
         <header className="stagger-item text-center" style={stagger(0)}>
           <h1 className="text-4xl font-semibold tracking-tight">The Challenge</h1>
