@@ -1,3 +1,4 @@
+import CourseAssistant from "../components/CourseAssistant";
 import OnboardingTransition from "./OnboardingTransition";
 
 export default function OnboardingLayout({
@@ -5,6 +6,11 @@ export default function OnboardingLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <OnboardingTransition>{children}</OnboardingTransition>;
+  return (
+    <>
+      <OnboardingTransition>{children}</OnboardingTransition>
+      <CourseAssistant />
+    </>
+  );
 }
 
