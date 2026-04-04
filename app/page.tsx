@@ -1,4 +1,4 @@
-import CourseAssistant from "./components/CourseAssistant";
+import CourseAssistantClient from "./components/CourseAssistantClient";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
@@ -38,7 +38,7 @@ export default function Home() {
           Start
         </Link>
       </main>
-      <CourseAssistant />
+      <CourseAssistantClient />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import CourseAssistant from "../components/CourseAssistant";
+import CourseAssistantClient from "../components/CourseAssistantClient";
 import OnboardingTransition from "./OnboardingTransition";
 
 export default function OnboardingLayout({
@@ -9,7 +9,7 @@ export default function OnboardingLayout({
   return (
     <>
       <OnboardingTransition>{children}</OnboardingTransition>
-      <CourseAssistant />
+      <CourseAssistantClient />
     </>
   );
 }

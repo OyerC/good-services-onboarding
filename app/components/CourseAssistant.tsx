@@ -1,25 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type ChatMessage = { role: "user" | "assistant"; text: string };
 
-function getSimulatedResponse(question: string): string {
-  const lower = question.toLowerCase();
-  if (lower.includes("challenge")) {
-    return "You should choose a challenge where you can access real context, not just something you like. The goal is to work with reality, not preference.";
-  }
-  if (lower.includes("magic")) {
-    return "The Magic Wand is a personal layer of the course. It’s about choosing something you want to improve and working on it intentionally.";
-  }
-  return "This course is designed to challenge how you think and work. Try to engage with it actively, not passively.";
-}
+const ASSISTANT_TITLE_ID = "course-assistant-dialog-title";
 
 export default function CourseAssistant() {
-  const titleId = useId();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [sending, setSending] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -45,18 +36,76 @@ export default function CourseAssistant() {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages, open]);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const text = input.trim();
-    if (!text) return;
+    if (!text || sending) return;
 
     setMessages((m) => [...m, { role: "user", text }]);
     setInput("");
+    setSending(true);
 
-    const reply = getSimulatedResponse(text);
-    window.setTimeout(() => {
+    try {
+      const res = await fetch("/api/assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text }),
+      });
+
+      let data: unknown;
+      try {
+        data = await res.json();
+      } catch {
+        setMessages((m) => [
+          ...m,
+          {
+            role: "assistant",
+            text: `Request failed (${res.status}). Response was not JSON.`,
+          },
+        ]);
+        return;
+      }
+
+      if (!res.ok) {
+        const err =
+          data &&
+          typeof data === "object" &&
+          data !== null &&
+          "error" in data &&
+          typeof (data as { error: unknown }).error === "string"
+            ? (data as { error: string }).error
+            : `Request failed (${res.status})`;
+        setMessages((m) => [...m, { role: "assistant", text: err }]);
+        return;
+      }
+
+      const reply =
+        data &&
+        typeof data === "object" &&
+        data !== null &&
+        "reply" in data &&
+        typeof (data as { reply: unknown }).reply === "string"
+          ? (data as { reply: string }).reply.trim()
+          : "";
+
+      if (!reply) {
+        setMessages((m) => [
+          ...m,
+          {
+            role: "assistant",
+            text: "The API returned a success status but no reply text.",
+          },
+        ]);
+        return;
+      }
+
       setMessages((m) => [...m, { role: "assistant", text: reply }]);
-    }, 450);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      setMessages((m) => [...m, { role: "assistant", text: message }]);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -66,7 +115,7 @@ export default function CourseAssistant() {
         onClick={() => setOpen(true)}
         className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1.25rem,env(safe-area-inset-right))] z-40 rounded-full bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition duration-200 ease-out hover:scale-[1.02] hover:bg-primary/90 hover:shadow-xl active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/35 sm:bottom-6 sm:right-6"
       >
-        Ask the Assistant
+        Ask Oyer
       </button>
 
       {open ? (
@@ -74,7 +123,7 @@ export default function CourseAssistant() {
           className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4"
           role="dialog"
           aria-modal="true"
-          aria-labelledby={titleId}
+          aria-labelledby={ASSISTANT_TITLE_ID}
         >
           <button
             type="button"
@@ -89,10 +138,14 @@ export default function CourseAssistant() {
             <header className="shrink-0 border-b border-foreground/10 px-5 py-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h2 id={titleId} className="text-lg font-semibold tracking-tight">
+                  <h2 id={ASSISTANT_TITLE_ID} className="text-lg font-semibold tracking-tight">
                     Course Assistant
                   </h2>
-                  <p className="mt-1 text-sm leading-relaxed text-foreground/70">
+                  <p className="mt-2 max-w-md text-[11px] leading-snug text-foreground/50">
+                    This experimental assistant is part of the course experience. Use it with
+                    curiosity.
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/65">
                     Ask anything about the course, challenges or the Magic Wand
                   </p>
                 </div>
@@ -132,26 +185,28 @@ export default function CourseAssistant() {
             <form
               onSubmit={handleSubmit}
               className="shrink-0 border-t border-foreground/10 bg-background/95 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm"
+              aria-busy={sending}
             >
               <div className="flex gap-2">
-                <label htmlFor="course-assistant-input" className="sr-only">
+                <label htmlFor="course-assistant-message-input" className="sr-only">
                   Your question
                 </label>
                 <input
                   ref={inputRef}
-                  id="course-assistant-input"
+                  id="course-assistant-message-input"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Type your question…"
-                  className="min-w-0 flex-1 rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-foreground/45 focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="min-w-0 flex-1 rounded-xl border border-foreground/15 bg-background px-3.5 py-2.5 text-sm text-foreground placeholder:text-foreground/45 focus:border-primary/40 focus:outline-none focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
                   autoComplete="off"
+                  disabled={sending}
                 />
                 <button
                   type="submit"
                   className="shrink-0 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition duration-200 ease-out hover:bg-primary/90 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30 disabled:opacity-50"
-                  disabled={!input.trim()}
+                  disabled={!input.trim() || sending}
                 >
-                  Send
+                  {sending ? "…" : "Send"}
                 </button>
               </div>
             </form>
