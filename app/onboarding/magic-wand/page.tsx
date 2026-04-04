@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
 
 type StaggerStyle = CSSProperties & { ["--stagger-index"]?: number };
@@ -7,7 +6,7 @@ const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index }
 export default function MagicWandScreen() {
   return (
     <div className="min-h-screen screen-breathe screen-breathe-magic-wand text-foreground">
-      <main className="stagger mx-auto flex w-full max-w-2xl flex-col px-6 py-20 text-center">
+      <main className="stagger mx-auto flex w-full max-w-2xl flex-col px-6 pb-20 pt-6 text-center sm:px-8 sm:pt-8">
         <h1
           className="stagger-item text-4xl font-semibold tracking-tight"
           style={stagger(0)}
@@ -16,7 +15,7 @@ export default function MagicWandScreen() {
         </h1>
 
         <div
-          className="stagger-item mt-8 space-y-6 text-base leading-7 text-foreground/80"
+          className="stagger-item mt-8 space-y-6 text-base leading-7 text-foreground/80 sm:text-[1.0625rem] sm:leading-8"
           style={stagger(1)}
         >
           <p>
@@ -50,34 +49,25 @@ export default function MagicWandScreen() {
         </div>
 
         <section
-          className="stagger-item mt-12 rounded-2xl bg-tint px-6 py-10"
+          className="stagger-item mt-12 rounded-2xl border border-foreground/10 bg-tint px-6 py-10 sm:px-8"
           style={stagger(2)}
         >
           <p className="text-sm font-semibold uppercase tracking-wide text-foreground/70">
             Reflection prompt
           </p>
-          <p className="mt-4 text-2xl font-semibold leading-9 tracking-tight text-primary">
+          <p className="mt-4 text-2xl font-semibold leading-9 tracking-tight text-primary sm:text-[1.75rem]">
             If you had a magic wand… what would you choose to change about yourself?
           </p>
         </section>
 
         <div
-          className="stagger-item mt-10 space-y-2 text-base leading-7 text-foreground/80"
+          className="stagger-item mt-10 space-y-2 text-base leading-7 text-foreground/80 sm:text-[1.0625rem] sm:leading-8"
           style={stagger(3)}
         >
           <p>For now, you don&apos;t need to do anything.</p>
           <p>Just take a moment and think about it.</p>
         </div>
-
-        <Link
-          href="/"
-          className="stagger-item mx-auto mt-14 inline-flex h-12 w-auto items-center justify-center rounded-full bg-primary px-8 text-primary-foreground font-semibold shadow-sm transition duration-200 ease-out hover:scale-[1.03] hover:bg-primary/90 hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30"
-          style={stagger(4)}
-        >
-          Back to start
-        </Link>
       </main>
     </div>
   );
 }
-

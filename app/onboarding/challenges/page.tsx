@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 
@@ -89,10 +88,10 @@ export default function ChallengesScreen() {
 
   return (
     <div className="min-h-screen screen-breathe screen-breathe-challenges text-foreground">
-      <main className="stagger mx-auto flex w-full max-w-3xl flex-col px-6 py-16">
+      <main className="stagger mx-auto flex w-full max-w-3xl flex-col px-6 pb-16 pt-6 sm:px-8 sm:pt-8">
         <header className="stagger-item text-center" style={stagger(0)}>
           <h1 className="text-4xl font-semibold tracking-tight">The Challenge</h1>
-          <p className="mt-6 text-base leading-7 text-foreground/80">
+          <p className="mt-6 text-base leading-7 text-foreground/80 sm:text-[1.0625rem] sm:leading-8">
             You will work in groups. Each group will choose one challenge.
           </p>
         </header>
@@ -166,18 +165,6 @@ export default function ChallengesScreen() {
             })}
           </div>
         </section>
-
-        <div
-          className="stagger-item mt-12 flex justify-center"
-          style={stagger(4)}
-        >
-          <Link
-            href="/onboarding/magic-wand"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-primary-foreground font-semibold shadow-sm transition duration-200 ease-out hover:scale-[1.03] hover:bg-primary/90 hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30"
-          >
-            Next
-          </Link>
-        </div>
       </main>
     </div>
   );

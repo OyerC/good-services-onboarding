@@ -147,11 +147,11 @@ h1 {
 @keyframes assistant-panel-in {
   from {
     opacity: 0;
-    transform: translateY(14px) scale(0.985);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -175,22 +175,38 @@ h1 {
   }
 }
 
+@keyframes assistant-thinking-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
 .assistant-backdrop-enter {
-  animation: assistant-backdrop-in 280ms ease-out both;
+  animation: assistant-backdrop-in 250ms ease-out both;
 }
 
 .assistant-panel-enter {
-  animation: assistant-panel-in 320ms ease-out both;
+  animation: assistant-panel-in 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .assistant-msg-enter {
-  animation: assistant-msg-in 220ms ease-out both;
+  animation: assistant-msg-in 200ms ease-out both;
+}
+
+.assistant-thinking {
+  animation: assistant-thinking-pulse 1.5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .assistant-backdrop-enter,
   .assistant-panel-enter,
-  .assistant-msg-enter {
+  .assistant-msg-enter,
+  .assistant-thinking {
     animation: none;
   }
 }
+
