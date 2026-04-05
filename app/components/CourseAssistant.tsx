@@ -5,8 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const ASSISTANT_TITLE_ID = "course-assistant-dialog-title";
 const IE_BLUE = "#003A8F";
 
-const CHATGPT_HREF =
-  process.env.NEXT_PUBLIC_CHATGPT_URL ?? "https://chatgpt.com";
+const CUSTOM_GPT_URL =
+  process.env.NEXT_PUBLIC_CHATGPT_URL ??
+  "https://chatgpt.com/g/g-69d21788664c8191a388f2294d841c27-good-services-ai-assistant";
 
 const SUPPORT_EMAIL = "ocorazon@faculty.ie.edu";
 const MAILTO_HREF = `mailto:${SUPPORT_EMAIL}`;
@@ -14,7 +15,7 @@ const MAILTO_HREF = `mailto:${SUPPORT_EMAIL}`;
 export default function CourseAssistant() {
   const [open, setOpen] = useState(false);
   const close = useCallback(() => setOpen(false), []);
-  const ctaRef = useRef<HTMLAnchorElement>(null);
+  const ctaRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -110,16 +111,17 @@ export default function CourseAssistant() {
                 </p>
 
                 <div className="flex flex-col gap-3 pt-1">
-                  <a
+                  <button
+                    type="button"
                     ref={ctaRef}
-                    href={CHATGPT_HREF}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={() =>
+                      window.open(CUSTOM_GPT_URL, "_blank", "noopener,noreferrer")
+                    }
                     className="inline-flex h-12 w-full items-center justify-center rounded-xl border border-solid px-6 text-base font-semibold transition-colors hover:bg-foreground/[0.03] focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2"
                     style={{ borderColor: IE_BLUE, color: IE_BLUE, outlineColor: IE_BLUE }}
                   >
                     Open in ChatGPT
-                  </a>
+                  </button>
                   <p className="text-center text-[12px] leading-relaxed text-foreground/45 sm:text-[13px]">
                     You can come back here at any time.
                   </p>
