@@ -19,85 +19,79 @@ export default function ChallengesScreen() {
         letter: "A.",
         title: "Nagami Club",
         description:
-          "Designing a real-time creation experience in nightlife environments such as clubs in Ibiza, Marbella, or Miami. The focus is on turning design and fabrication into a live, social experience, where users interact with the process and later receive the produced object. Relevant contexts: nightlife, events, experiential design, user interaction in social environments.",
+          "Designing a real-time creation experience in nightlife environments such as clubs in Ibiza, Marbella, or Miami.\n\nThe focus is on turning design and fabrication into a live, social experience, where users interact with the process and later receive the produced object.\n\nRelevant contexts: nightlife, events, experiential design, social interaction environments.",
       },
       {
         letter: "B.",
         title: "Nagami on Wheels",
         description:
-          "A mobile version of Nagami’s studio that brings design and fabrication to universities, companies, fairs, or underserved territories. The focus is not just demonstration, but activation: workshops, participation, and engagement. Relevant contexts: education, events, outreach, community activation, mobile experiences.",
+          "A mobile version of Nagami’s studio that brings design and fabrication to universities, companies, fairs, or underserved territories.\n\nThe focus is not just demonstration, but activation: workshops, participation, and engagement.\n\nRelevant contexts: education, events, community activation, mobile experiences.",
       },
       {
         letter: "C.",
         title: "Material Rebirth",
         description:
-          "Transforming damaged objects into unique pieces using Nagami materials, inspired by the philosophy of kintsugi. The challenge is to redesign repair as something meaningful, visible, and valuable. Relevant contexts: sustainability, repair culture, emotional design, circular economy.",
+          "Transforming damaged objects into unique pieces using Nagami materials, inspired by the philosophy of kintsugi.\n\nThe challenge is to rethink repair as something visible, meaningful, and valuable.\n\nRelevant contexts: sustainability, repair culture, emotional design, circular economy.",
       },
       {
         letter: "D.",
         title: "Space as a Service",
         description:
-          "Moving from designing objects to designing complete spatial experiences: entrances, flows, atmospheres, and identity. The challenge is to think in terms of how people move, perceive, and interact within a space. Relevant contexts: architecture, retail, exhibitions, spatial storytelling.",
+          "Moving from designing objects to designing complete spatial experiences: flows, entrances, atmospheres, and identity.\n\nThe challenge is to design how people move, feel, and interact within a space.\n\nRelevant contexts: architecture, retail, exhibitions, spatial storytelling.",
       },
       {
         letter: "E.",
         title: "Modular Spaces for Events & Fairs",
         description:
-          "Designing modular systems for stands, installations, and temporary spaces that can be reused and adapted over time. The goal is to turn one-off installations into evolving assets. Relevant contexts: trade fairs, events, exhibitions, temporary architecture.",
+          "Designing modular systems for stands and temporary installations in fairs and events.\n\nThe goal is to transform one-off installations into reusable, evolving assets.\n\nRelevant contexts: trade fairs, exhibitions, temporary architecture, event design.",
       },
       {
         letter: "F.",
-        title: "Urban Boundaries",
+        title: "B2B Circular Display",
         description:
-          "Redefining urban outdoor spaces through Nagami structures that shape terraces and public areas. The focus is on creating identity and presence in the city through form and structure. Relevant contexts: urban design, hospitality, public space, city experience.",
+          "A subscription-based model where brands can access display elements previously used by high-end clients.\n\nThe challenge is to design reuse as a premium, desirable system.\n\nRelevant contexts: retail, branding, sustainability, B2B services.",
       },
       {
         letter: "G.",
-        title: "B2B Circular Display",
+        title: "Queue as a Service",
         description:
-          "A subscription-based model where brands access display elements previously used by high-end clients. The challenge is to rethink reuse as a premium, desirable system. Relevant contexts: retail, branding, sustainability, B2B services.",
+          "Transforming waiting time into an experience that creates value instead of friction.\n\nThe challenge is to redesign how people wait in environments such as retail, museums, or events.\n\nRelevant contexts: customer experience, service design, public interaction.",
       },
       {
         letter: "H.",
-        title: "Queue as a Service",
+        title: "Nagami Experience Lab",
         description:
-          "Transforming waiting time into an experience that creates value instead of frustration. The challenge is to redesign how people wait in contexts such as retail, museums, or events. Relevant contexts: service design, customer experience, public interaction.",
+          "An immersive experience in Ávila where teams co-design and produce with Nagami.\n\nThe focus is on combining process, place, and learning into a meaningful experience.\n\nRelevant contexts: experiential learning, workshops, B2B experiences.",
       },
       {
         letter: "I.",
-        title: "Nagami Experience Lab",
+        title: "Nagami Rotation Club",
         description:
-          "An immersive experience in Ávila where teams co-design and produce with Nagami. The focus is on combining process, place, and learning into a meaningful experience. Relevant contexts: experiential learning, workshops, B2B experiences.",
+          "A subscription model where users access rotating pieces instead of owning them.\n\nThe challenge is to design a system based on access rather than ownership.\n\nRelevant contexts: subscription models, product-service systems, circular economy.",
       },
       {
         letter: "J.",
-        title: "Nagami Rotation Club",
+        title: "Nagami as a Service",
         description:
-          "A subscription model where users access rotating pieces instead of owning them. The challenge is to design a system based on access, not ownership. Relevant contexts: subscription services, product-service systems, circular economy.",
+          "A model where companies access furniture as a service, including installation, maintenance, and updates.\n\nThe focus is on long-term relationships instead of one-time transactions.\n\nRelevant contexts: B2B services, leasing models, lifecycle design.",
       },
       {
         letter: "K.",
-        title: "Nagami as a Service",
+        title: "Event Loop",
         description:
-          "A model where companies access furniture as a service, including installation, maintenance, and updates. The focus is on long-term relationships instead of one-time transactions. Relevant contexts: B2B services, leasing models, lifecycle design.",
+          "A system where objects accumulate narrative across different events.\n\nThe value lies not only in the object, but in the story it carries.\n\nRelevant contexts: events, storytelling, brand experience.",
       },
       {
         letter: "L.",
-        title: "Event Loop",
+        title: "Objects with Soul",
         description:
-          "A system where objects accumulate history across different events. The value lies not only in the object, but in the story it carries. Relevant contexts: storytelling, events, brand experience, narrative design.",
+          "Tracking the history of each object: origin, use, and ownership.\n\nThe goal is to connect design with emotional and cultural value.\n\nRelevant contexts: traceability, sustainability, emotional design.",
       },
       {
         letter: "M.",
-        title: "Objects with Soul",
-        description:
-          "Tracking the history of each object: origin, use, and ownership. The goal is to connect design with emotional and cultural value. Relevant contexts: traceability, sustainability, emotional design.",
-      },
-      {
-        letter: "N.",
         title: "Co-Creation Services",
         description:
-          "Allowing clients to actively participate in the design process. The focus is on turning design into a shared experience rather than a delivered product. Relevant contexts: co-creation, participatory design, client engagement.",
+          "Allowing clients to actively participate in the design process.\n\nThe focus is on turning design into a shared experience rather than a delivered product.\n\nRelevant contexts: co-creation, participatory design, client engagement.",
       },
     ],
     [],
@@ -171,7 +165,10 @@ export default function ChallengesScreen() {
                   </button>
 
                   {isOpen ? (
-                    <div id={contentId} className="px-5 pb-5 text-sm leading-6 text-foreground/80">
+                    <div
+                      id={contentId}
+                      className="px-5 pb-5 text-sm leading-6 whitespace-pre-line text-foreground/80"
+                    >
                       {c.description}
                     </div>
                   ) : null}
