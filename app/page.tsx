@@ -1,5 +1,6 @@
 import CourseAssistantClient from "./components/CourseAssistantClient";
 import GoodServicesCircleLogo from "./components/GoodServicesCircleLogo";
+import MobileSwipeNav from "./components/MobileSwipeNav";
 import OnboardingTopNav from "./components/OnboardingTopNav";
 import type { CSSProperties } from "react";
 
@@ -9,6 +10,7 @@ const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index }
 export default function Home() {
   return (
     <div className="min-h-screen screen-breathe screen-breathe-welcome text-foreground">
+      <MobileSwipeNav prevHref={null} nextHref="/onboarding/client" />
       <OnboardingTopNav
         backHref={null}
         forwardHref="/onboarding/client"

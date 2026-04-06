@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import MobileSwipeNav from "../../components/MobileSwipeNav";
 
 type StaggerStyle = CSSProperties & { ["--stagger-index"]?: number };
 const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index });
@@ -6,6 +7,7 @@ const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index }
 export default function MagicWandScreen() {
   return (
     <div className="min-h-screen screen-breathe screen-breathe-magic-wand text-foreground">
+      <MobileSwipeNav prevHref="/onboarding/challenges" nextHref="/onboarding/next" />
       <main className="stagger mx-auto flex w-full max-w-2xl flex-col px-6 pb-20 pt-6 text-center sm:px-8 sm:pt-8">
         <h1
           className="stagger-item text-4xl font-semibold tracking-tight"

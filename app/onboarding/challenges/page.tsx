@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type { CSSProperties } from "react";
+import MobileSwipeNav from "../../components/MobileSwipeNav";
 
 type StaggerStyle = CSSProperties & { ["--stagger-index"]?: number };
 const stagger = (index: number): StaggerStyle => ({ ["--stagger-index"]: index });
@@ -101,6 +102,7 @@ export default function ChallengesScreen() {
 
   return (
     <div className="min-h-screen screen-breathe screen-breathe-challenges text-foreground">
+      <MobileSwipeNav prevHref="/onboarding/client" nextHref="/onboarding/magic-wand" />
       <main className="stagger mx-auto flex w-full max-w-3xl flex-col px-6 pb-16 pt-6 sm:px-8 sm:pt-8">
         <header className="stagger-item text-center" style={stagger(0)}>
           <h1 className="text-4xl font-semibold tracking-tight">The Challenge</h1>
