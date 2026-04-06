@@ -17,11 +17,13 @@ const HORIZONTAL_INTENT_RATIO = 1.4;
 
 function isMobileTouchEnvironment(): boolean {
   if (typeof window === "undefined") return false;
-  return (
-    window.matchMedia?.("(pointer: coarse)").matches === true &&
-    window.matchMedia?.("(hover: none)").matches === true &&
-    (window.innerWidth ?? 1024) < 900
-  );
+  const coarse = window.matchMedia?.("(pointer: coarse)")?.matches ?? false;
+  const noHover = window.matchMedia?.("(hover: none)")?.matches ?? false;
+  const touchPoints = navigator.maxTouchPoints ?? 0;
+  const hasTouch =
+    touchPoints > 0 || "ontouchstart" in window || (navigator as any).msMaxTouchPoints > 0;
+  const smallViewport = (window.innerWidth ?? 1024) < 900;
+  return (hasTouch && (coarse || noHover)) || (hasTouch && smallViewport);
 }
 
 function isFromInteractiveElement(target: EventTarget | null): boolean {
@@ -150,16 +152,100 @@ export default function MobileSwipeNav({ prevHref, nextHref }: MobileSwipeNavPro
       stateRef.current.active = false;
     };
 
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
-    window.addEventListener("touchend", onTouchEnd, { passive: true });
-    window.addEventListener("touchcancel", onTouchCancel, { passive: true });
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.pointerType !== "touch") return;
+      if (isFromInteractiveElement(e.target)) return;
+      const now = performance.now();
+      stateRef.current = {
+        active: true,
+        horizontalIntent: false,
+        cancelled: false,
+        startX: e.clientX,
+        startY: e.clientY,
+        startT: now,
+        lastX: e.clientX,
+        lastY: e.clientY,
+        lastT: now,
+        width: window.innerWidth ?? 0,
+      };
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      const s = stateRef.current;
+      if (!s.active || s.cancelled) return;
+      if (e.pointerType !== "touch") return;
+
+      const now = performance.now();
+      s.lastX = e.clientX;
+      s.lastY = e.clientY;
+      s.lastT = now;
+
+      const dx = s.lastX - s.startX;
+      const dy = s.lastY - s.startY;
+
+      if (!s.horizontalIntent) {
+        const adx = Math.abs(dx);
+        const ady = Math.abs(dy);
+        if (ady > adx) return;
+
+        if (adx >= HORIZONTAL_LOCK_THRESHOLD_PX && adx > ady * HORIZONTAL_INTENT_RATIO) {
+          if (dx > 0 && s.startX < EDGE_GESTURE_GUARD_PX) {
+            s.cancelled = true;
+            return;
+          }
+          s.horizontalIntent = true;
+        }
+      }
+    };
+
+    const onPointerUp = (e: PointerEvent) => {
+      const s = stateRef.current;
+      if (!s.active) return;
+      if (e.pointerType !== "touch") return;
+
+      const dx = s.lastX - s.startX;
+      const dy = s.lastY - s.startY;
+      const adx = Math.abs(dx);
+      const ady = Math.abs(dy);
+      const dt = Math.max(1, s.lastT - s.startT);
+
+      s.active = false;
+
+      if (s.cancelled || !s.horizontalIntent) return;
+      if (adx <= ady * HORIZONTAL_INTENT_RATIO) return;
+      if (dt > MAX_SWIPE_DURATION_MS) return;
+
+      const velocity = adx / dt;
+      const distanceOk = adx >= MIN_SWIPE_DISTANCE_PX;
+      const velocityOk = velocity >= MIN_SWIPE_VELOCITY_PX_PER_MS;
+      if (!distanceOk && !velocityOk) return;
+
+      if (dx < 0 && nextHref) router.push(nextHref);
+      if (dx > 0 && prevHref) router.push(prevHref);
+    };
+
+    const target = document;
+
+    target.addEventListener("touchstart", onTouchStart, { passive: true });
+    target.addEventListener("touchmove", onTouchMove, { passive: false });
+    target.addEventListener("touchend", onTouchEnd, { passive: true });
+    target.addEventListener("touchcancel", onTouchCancel, { passive: true });
+
+    target.addEventListener("pointerdown", onPointerDown, { passive: true });
+    target.addEventListener("pointermove", onPointerMove, { passive: true });
+    target.addEventListener("pointerup", onPointerUp, { passive: true });
+    target.addEventListener("pointercancel", onTouchCancel, { passive: true });
 
     return () => {
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
-      window.removeEventListener("touchcancel", onTouchCancel);
+      target.removeEventListener("touchstart", onTouchStart);
+      target.removeEventListener("touchmove", onTouchMove);
+      target.removeEventListener("touchend", onTouchEnd);
+      target.removeEventListener("touchcancel", onTouchCancel);
+
+      target.removeEventListener("pointerdown", onPointerDown);
+      target.removeEventListener("pointermove", onPointerMove);
+      target.removeEventListener("pointerup", onPointerUp);
+      target.removeEventListener("pointercancel", onTouchCancel);
     };
   }, [router, prevHref, nextHref, pathname]);
 
