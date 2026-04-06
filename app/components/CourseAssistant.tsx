@@ -90,9 +90,8 @@ export default function CourseAssistant() {
                   <p>This is part of the course experience.</p>
                   <p>
                     You are about to enter a space where you can ask questions and explore your
-                    thinking.
+                    thinking. Access is restricted to IE University ChatGPT accounts.
                   </p>
-                  <p>Use it when you have a real question.</p>
                 </div>
 
                 <p className="text-[13px] leading-relaxed text-foreground/55 sm:text-sm">
