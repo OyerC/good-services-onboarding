@@ -24,23 +24,20 @@ export default function ClientScreen() {
           className="stagger-item mt-8 max-w-prose text-base leading-7 text-foreground/80 sm:text-[1.0625rem] sm:leading-8"
           style={stagger(2)}
         >
-          You will work with a real company. Nagami designs and manufactures
-          furniture using advanced technologies such as robotic 3D printing.
+          You will work with a real company. Nagami designs and manufactures furniture using
+          advanced technologies such as robotic 3D printing, operating at the intersection of
+          design, architecture, and advanced manufacturing.
         </p>
 
         <p
           className="stagger-item mt-5 max-w-prose text-base leading-7 text-foreground/80 sm:text-[1.0625rem] sm:leading-8"
           style={stagger(3)}
         >
-          This is not a fictional case. You are stepping into a real context
-          with real constraints. And furthermore, this Real Client will come
-          to our first class.
+          This is not a fictional brief. You are stepping into a real context, with real
+          constraints and real decisions. The client will join us in the first session.
         </p>
 
-        <section
-          className="stagger-item mt-10 w-full"
-          style={stagger(4)}
-        >
+        <section className="stagger-item mt-10 w-full" style={stagger(4)}>
           <div className="mb-3 text-sm font-semibold tracking-wide text-foreground/70">
             Nagami Video
           </div>

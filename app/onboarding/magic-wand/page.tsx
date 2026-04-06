@@ -19,33 +19,49 @@ export default function MagicWandScreen() {
           style={stagger(1)}
         >
           <p>
-            This course is not only about what you build.{" "}
+            This course is not only about what you build.
             <br />
-            It&apos;s also about who you become while building it.
+            It is also about who you become while building it.
           </p>
 
           <p>
-            Throughout the course, you&apos;ll have the opportunity to work on something
-            more personal.
+            Throughout the course, you will have the opportunity to work on something more
+            personal.
           </p>
 
           <div className="space-y-2">
-            <p>A skill.</p>
             <p>A habit.</p>
+            <p>A behavior.</p>
             <p>A way of working that you know you could improve.</p>
           </div>
 
           <p>We call it the Magic Wand.</p>
 
-          <p>
-            It is completely optional. It will not affect your grade in any way.
-          </p>
+          <p>It is completely optional. It does not affect your grade.</p>
+
+          <p>This is a personal, introspective layer of the course.</p>
+
+          <p>The goal is not external performance. It is internal change.</p>
 
           <p>
-            This is a personal, introspective space. Something you do for yourself.
+            This course is designed to be a Good Service for you. And a Good Service has the
+            potential to transform.
           </p>
 
-          <p>We will explain it properly on the first day.</p>
+          <p>Not because someone tells you what to change. But because you decide to work on it.</p>
+
+          <div className="space-y-2">
+            <p>After each session, you can reflect on:</p>
+            <p>- what you have learned</p>
+            <p>- how you behaved</p>
+            <p>- what you would like to improve</p>
+          </div>
+
+          <p>You can use tools like ChatGPT to support that reflection.</p>
+
+          <p>This work is yours. You do not need to share it.</p>
+
+          <p>If you use it well, it will directly improve your Learning Journal.</p>
         </div>
 
         <section
@@ -56,7 +72,7 @@ export default function MagicWandScreen() {
             Reflection prompt
           </p>
           <p className="mt-4 text-2xl font-semibold leading-9 tracking-tight text-primary sm:text-[1.75rem]">
-            If you had a magic wand… what would you choose to change about yourself?
+            If you had a magic wand… what would you choose to change about how you work?
           </p>
         </section>
 

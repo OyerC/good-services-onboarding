@@ -23,7 +23,7 @@ export default function Home() {
           className="stagger-item mt-4 text-4xl font-semibold tracking-tight"
           style={stagger(1)}
         >
-          Good Services
+          GOOD SERVICES
         </h1>
         <h2
           className="stagger-item mt-2 text-lg font-medium text-foreground/80"
@@ -36,8 +36,11 @@ export default function Home() {
           className="stagger-item mt-6 max-w-prose text-base leading-7 text-foreground/80 sm:text-[1.0625rem] sm:leading-8"
           style={stagger(3)}
         >
-          This course is about designing services that work in the real
-          world.
+          Master in Creative Direction, Content &amp; Branding
+          <br />
+          <br />
+          This course is about designing services that work in the real world, and are good for
+          the planet.
         </p>
       </main>
       <CourseAssistantClient />
