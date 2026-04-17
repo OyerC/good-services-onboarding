@@ -26,13 +26,19 @@ const ROUTES: Record<
   },
   "/onboarding/magic-wand": {
     backHref: "/onboarding/challenges",
-    forwardHref: "/",
+    forwardHref: "/onboarding/deeper-into-magic-wand",
+    forwardLabel: "Deeper into Magic Wand",
+    showForwardArrow: true,
+  },
+  "/onboarding/deeper-into-magic-wand": {
+    backHref: "/onboarding/magic-wand",
+    forwardHref: "/onboarding/client",
     forwardLabel: "Back to start",
     showForwardArrow: false,
   },
   "/onboarding/next": {
     backHref: "/onboarding/magic-wand",
-    forwardHref: "/",
+    forwardHref: "/onboarding/client",
     forwardLabel: "Back to start",
     showForwardArrow: false,
   },
